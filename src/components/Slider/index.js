@@ -9,25 +9,12 @@ const Slider = () => {
             <div className={st.slider}>
                 <Container className={st.sliderContent}>
                     <Heading> 
-                    Wow wow
+                    Wow H1
                     </Heading>
                     <Heading lvl={2}
                     > 
-                    Wow wow wow
+                    Wow H2
                     </Heading>
-                    <Heading lvl={3}
-                    > 
-                    Wow wow wow
-                    </Heading>
-                    <Heading lvl={4}
-                    > 
-                    Wow wow wow
-                    </Heading>
-                    <Heading lvl={5}
-                    > 
-                    Wow wow wow
-                    </Heading>
-                    
                     <div className={st.call}>
                         <button className={st.button}>Wow</button>
                     </div>

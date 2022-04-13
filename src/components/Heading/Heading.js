@@ -1,5 +1,6 @@
 import React from 'react';
 import cN from 'classnames';
+import PropTypes from 'prop-types'
 
 import st from './Heading.module.css';
 
@@ -13,4 +14,9 @@ const Heading = (props) => {
 
 }
 
+Heading.propTypes = {
+    lvl: PropTypes.oneOf([1, 2, 3, 4, 5]),
+    className: PropTypes.string,
+    children: PropTypes.node
+}
 export default Heading;
