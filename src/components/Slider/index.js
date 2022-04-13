@@ -1,12 +1,13 @@
-import Heading from '../Heading';
 import st from './Slider.module.css';
-import cN from 'classnames';
+import Container from '../Container';
+
+import Heading from '../Heading';
 
 const Slider = () => {
     return (
         <section className={st.section}>
             <div className={st.slider}>
-                <div className={cN(st.container, st.sliderContent)}>
+                <Container className={st.sliderContent}>
                     <Heading 
                     title="Wow Wow"
                     />
@@ -14,7 +15,7 @@ const Slider = () => {
                     <div className={st.call}>
                         <button className={st.button}>Wow</button>
                     </div>
-                </div>
+                </Container>
             </div>
         </section>
     )
