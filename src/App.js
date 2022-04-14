@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Header />
       <Slider />
-      <Text el='p' italic strong>
+      <Text el="p" italic strong>
         Children of Text El in bold italic
       </Text>
       <Footer />

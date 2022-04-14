@@ -1,5 +1,5 @@
 import React from 'react';
-import cN from 'classnames';
+import cn from 'classnames';
 import PropTypes from 'prop-types';
 import Container from '../Container';
 
@@ -9,7 +9,7 @@ const Text = (props) => {
     const { el, strong, italic, disabled, children, className } = props;//деструктуризация пропсов
 
     const textNode = React.createElement(el, {
-        className: cN(st.root, 
+        className: cn(st.root, 
             {[st.strong]:strong}, 
             {[st.italic]:italic}, 
             {[st.disabled]:disabled},  

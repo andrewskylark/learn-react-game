@@ -1,5 +1,5 @@
 import React from 'react';
-import cN from 'classnames';
+import cn from 'classnames';
 import PropTypes from 'prop-types'
 
 import st from './Heading.module.css';
@@ -9,7 +9,7 @@ const Heading = (props) => {
     const el = `h${lvl}`;
     
     return React.createElement(el, {
-        className: cN(st.root, st[`lvl${lvl}`], className)
+        className: cn(st.root, st[`lvl${lvl}`], className)
     }, children)
 
 }
