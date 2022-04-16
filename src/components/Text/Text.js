@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Container from '../Container';
 
 import st from './Text.module.scss';
-import Heading from '../Heading';
 
 const Text = (props) => {
     const { el, strong, italic, disabled, children, className } = props;//деструктуризация пропсов
@@ -20,8 +19,6 @@ const Text = (props) => {
     return (
         <section className={st.root}>
             <Container>
-                <Heading>Marvel Cards</Heading>
-                <Heading lvl="2" >Collect your best five</Heading>
                 {textNode}
             </Container>
         </section>

@@ -8,8 +8,8 @@ const Slider = () => {
         <section className={st.section}>
             <div className={st.slider}>
                 <Container className={st.sliderContent}>
-                    <Heading> 
-                    Wow H1
+                    <Heading underline> 
+                    Triple Triad Game
                     </Heading>
                     <Heading lvl={2}
                     > 
