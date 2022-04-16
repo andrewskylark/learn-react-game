@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types'
 
-import st from './Heading.module.css';
+import st from './Heading.module.scss';
 
 const Heading = (props) => {
     const { children, lvl = 1 , className} = props;//деструктуризация пропсов

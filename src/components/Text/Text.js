@@ -3,23 +3,28 @@ import cn from 'classnames';
 import PropTypes from 'prop-types';
 import Container from '../Container';
 
-import st from './Text.module.css';
+import st from './Text.module.scss';
+import Heading from '../Heading';
 
 const Text = (props) => {
     const { el, strong, italic, disabled, children, className } = props;//деструктуризация пропсов
 
     const textNode = React.createElement(el, {
-        className: cn(st.root, 
-            {[st.strong]:strong}, 
-            {[st.italic]:italic}, 
-            {[st.disabled]:disabled},  
+        className: cn(
+            { [st.strong]: strong },
+            { [st.italic]: italic },
+            { [st.disabled]: disabled },
             className)
     }, children)
 
     return (
-        <Container>
-            { textNode}
-        </Container>
+        <section className={st.root}>
+            <Container>
+                <Heading>Marvel Cards</Heading>
+                <Heading lvl="2" >Collect your best five</Heading>
+                {textNode}
+            </Container>
+        </section>
     )
 
 }

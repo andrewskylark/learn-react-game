@@ -1,4 +1,4 @@
-import st from './Container.module.css';
+import st from './Container.module.scss';
 import cn from 'classnames';
 
 const Container = (props) => {
