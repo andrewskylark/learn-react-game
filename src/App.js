@@ -4,9 +4,10 @@ import st from './App.module.scss';
 import Header from './components/Header';
 import Slider from './components/Slider';
 import Footer from './components/Footer';
-import Text from './components/Text';
+// import Text from './components/Text';
 import Heading from './components/Heading';
 import Container from './components/Container';
+import Character from './components/Character';
 
 function App() {
   return (
@@ -24,10 +25,10 @@ function App() {
             </Heading>
           </div>
           <div className={st.cardWrapper}>
-            <div>1</div>
-            <div>1</div>
-            <div>1</div>
-            <div>1</div>
+            <Character/>
+            <Character/>
+            <Character/>
+            <Character/>
           </div>
         </Container>
       </section>
