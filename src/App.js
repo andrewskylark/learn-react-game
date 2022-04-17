@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 // import Text from './components/Text';
 import Heading from './components/Heading';
 import CharacterCard from './components/CharacterCard';
+import { useState } from 'react';
 
 const CHARACTERS = [
   {
@@ -72,6 +73,18 @@ const CHARACTERS = [
 ];
 
 function App() {
+  const [characters, setCharacters] = useState(CHARACTERS);
+
+  const handleLikeClick = (id) => {
+    // let card = characters.find((item) => item.id)
+
+    setCharacters(prevState => prevState.map((card) => {
+      if (card.id === id) {
+        card.isLike = !card.isLike;
+      }
+      return card;
+    }))
+  }
   return (
     <div className="App">
       <Header />
@@ -88,7 +101,7 @@ function App() {
           </div>
           <div className={st.cardWrapper}>
             {
-              CHARACTERS.map((item) => {
+              characters.map((item) => {
                 return (
                   <CharacterCard
                     key={item.id}
@@ -97,6 +110,8 @@ function App() {
                     humanName={item.humanName}
                     thumb={item.thumbnail.path}
                     descr={item.description}
+                    isLike={item.isLike}
+                    onLikeClick={handleLikeClick}
                   />
                 )
               })

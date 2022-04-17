@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -10,11 +10,10 @@ import Heading from '../Heading';
 import Text from '../Text';
 
 const CharacterCard = (props) => {
-    const { id, thumb, charName, humanName, descr } = props;//деструктуризация пропсов
-    const [active, setActive] = useState(false);
+    const { id, thumb, charName, humanName, descr, isLike, onLikeClick } = props;//деструктуризация пропсов
+
     const handleLikeClick = () => {
-        console.log('click');
-        setActive(prevState => !prevState);
+        onLikeClick(id);
     }
 
     return (
@@ -36,7 +35,7 @@ const CharacterCard = (props) => {
                     <div className={st.cardMeta}>
                         <div
                             onClick={handleLikeClick}
-                            className={cn(st.like, { [st.active]: active })}>
+                            className={cn(st.like, { [st.active]: isLike })}>
                             <HeartSvg />
                         </div>
                         <div className={st.readBio}>
@@ -50,12 +49,9 @@ const CharacterCard = (props) => {
 
 }
 
-// Character.defaultProps = {
-//     strong: false,
-//     italic: false,
-//     disabled: false,
-//     className: null,
-// }
+CharacterCard.defaultProps = {
+    isLike: false,
+}
 
 CharacterCard.propTypes = {
     id: PropTypes.number,
@@ -63,6 +59,8 @@ CharacterCard.propTypes = {
     charName: PropTypes.string,
     humanName: PropTypes.string,
     descr: PropTypes.string,
+    isLike: PropTypes.bool,
+    onLikeClick: PropTypes.func,
 }
 
 export default CharacterCard;
