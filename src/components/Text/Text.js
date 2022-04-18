@@ -10,15 +10,17 @@ const Text = (props) => {
     const textNode = React.createElement(el, {
         className: cn(
             st.root,
-            { [st.strong]: strong },
-            { [st.italic]: italic },
-            { [st.disabled]: disabled },
+            {
+                [st.strong]: strong,
+                [st.italic]: italic,
+                [st.disabled]: disabled
+            },
             className)
     }, children)
 
     return (
         // <div className={st.root}>
-                textNode
+        textNode
         // </div>
     )
 
