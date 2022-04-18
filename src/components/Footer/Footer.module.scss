@@ -27,14 +27,14 @@
 .heart {
     display: inline-block;
     margin: 0 15px;
-}
 
-.heart:after {
-    content: "❤️";
-    display: inline-block;
-    font-size: 24px;
-    color: red;
-    animation: spin 2s infinite linear
+    &:after {
+        content: "❤️";
+        display: inline-block;
+        font-size: 24px;
+        color: red;
+        animation: spin 2s infinite linear;
+    }
 }
 
 @media (max-width: 1024px) {

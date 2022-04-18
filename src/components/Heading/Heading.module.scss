@@ -7,6 +7,19 @@
     font-size: 38px;
     line-height: 1.23;
     color: #000000d9;
+
+    &.underline {
+        text-align: center;
+
+        &::after {
+            content: "";
+            display: block;
+            width: 30%;
+            position: relative;
+            border-bottom: 1px solid #aaa;
+            margin: 15px auto 0;
+        }
+    }
 }
 
 .lvl2 {
