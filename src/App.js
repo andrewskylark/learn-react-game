@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import st from './App.module.scss';
 
 import Container from './components/Container';
@@ -7,14 +9,12 @@ import Footer from './components/Footer';
 // import Text from './components/Text';
 import Heading from './components/Heading';
 import CharacterCard from './components/CharacterCard';
-import { useState } from 'react';
 import CHARACTERS from './components/CharacterCard/CHARACTERS';
 
 function App() {
   const [characters, setCharacters] = useState(CHARACTERS);
 
   const handleLikeClick = (id) => {
-    // let card = characters.find((item) => item.id)
 
     setCharacters(prevState => prevState.map((card) => {
       if (card.id === id) {
