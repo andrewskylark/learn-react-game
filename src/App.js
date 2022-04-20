@@ -13,7 +13,7 @@ import CHARACTERS from './components/CharacterCard/CHARACTERS';
 
 function App() {
   const [characters, setCharacters] = useState(CHARACTERS);
-
+  // const characters2 = {...CHARACTERS}// copy arr, but not deep
   const handleLikeClick = (id) => {
 
     setCharacters(prevState => prevState.map((card) => {
