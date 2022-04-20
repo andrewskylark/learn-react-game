@@ -27,12 +27,10 @@ function App() {
   }
   const handleBioClick = (id) => {
     setShownBio(prevState => !prevState)
-    alert('bio click' + id)
     setId(id)
   }
-  const handleBackClick = (isShownBio) => {
+  const handleBackClick = () => {
     setShownBio(prevState => !prevState)
-    console.log('back click App isShownBio:' + isShownBio)
   }
 
   let pageContent;

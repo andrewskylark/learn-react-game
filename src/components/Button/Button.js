@@ -5,17 +5,17 @@ import cn from 'classnames';
 import st from './Button.module.scss'
 
 const Button = (props) => {
-    const { text, reversed, handleBtnClick } = props;
-
-    // const handleBtnClick = () => {
-    //     alert('click')
-    // }
+    const { text, reversed, className, handleBtnClick } = props;
 
     return (
         <button
-        onClick={handleBtnClick}
-        className={cn(st.root, {[st.reversed]: reversed})}>
+            onClick={handleBtnClick}
+            className={
+                cn(st.root,
+                className,
+                { [st.reversed]: reversed })}>
             {text}
+            
         </button>
     );
 };
@@ -27,6 +27,7 @@ Button.defaultProps = {
 Button.propTypes = {
     text: PropTypes.string,
     reversed: PropTypes.bool,
+    className: PropTypes.string,
     onBtnClick: PropTypes.func,
 }
 
