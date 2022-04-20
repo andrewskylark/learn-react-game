@@ -24,7 +24,7 @@ const Biography = (props) => {
             <Container>
                 <Button
                     text="Go Back" reversed
-                    className="btnBack"
+                    className={st.btnBack}
                     handleBtnClick={handleBackClick}
                 />
                 {

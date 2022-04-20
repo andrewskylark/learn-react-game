@@ -4,17 +4,19 @@
     justify-content: center;
     align-items: center;
 
+    h1, h2, p {
+        margin-bottom: 30px;
+    }
+
 
     img {
         display: block;
         margin: 0 auto;
+        margin-bottom: 40px;
     }  
-
-    .btnBack {
-        margin: 0 auto;
-    }
 }
 
 .btnBack {
     margin: 0 auto;
+    margin-bottom: 40px;
 }

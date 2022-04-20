@@ -18,5 +18,9 @@
     &.reversed {
         color: black;
         border: 1px solid black;
+
+        &:hover {
+            background: rgba(168, 168, 168, 0.6);
+        }
     }
 }
