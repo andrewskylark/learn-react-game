@@ -13,7 +13,6 @@ import Biography from './pages/Biography';
 
 function App() {
   const [characters, setCharacters] = useState(CHARACTERS);
-  const [isShownBio, setShownBio] = useState(false);
   const [id, setId] = useState(null);
   // const characters2 = {...CHARACTERS}// copy arr, but not deep
   const handleLikeClick = (id) => {
@@ -26,69 +25,53 @@ function App() {
     }))
   }
   const handleBioClick = (id) => {
-    setShownBio(prevState => !prevState)
     setId(id)
   }
   const handleBackClick = () => {
-    setShownBio(prevState => !prevState)
+    setId(null)
   }
 
-  let pageContent;
-
-  switch (isShownBio) {
-    case true: // only shows Bio content
-      pageContent = 
-      <>
-        <Biography
-          id={id}
-          isShownBio={isShownBio}
-          onBackClick={handleBackClick} />
-      </>
-      break;
-
-      default: // !isShownBio
-        pageContent = 
-        <>
-        <Slider />
-        <section className={st.cardSection}>
-          <Container>
-            <div className={st.cardTitle}>
-              <Heading underline>
-                Marvel Cards
-              </Heading>
-              <Heading lvl={2}>
-                Choose your best five
-              </Heading>
-            </div>
-            <div className={st.cardWrapper}>
-              {
-                characters.map((item) => {
-                  return (
-                    <CharacterCard
-                      key={item.id}
-                      id={item.id}
-                      charName={item.name}
-                      humanName={item.humanName}
-                      thumb={item.thumbnail.path}
-                      descr={item.description}
-                      isLike={item.isLike}
-                      onLikeClick={handleLikeClick}
-                      onBioClick={handleBioClick}
-                    />
-                  )
-                })
-              }
-            </div>
-          </Container>
-        </section>
-      </>
-  }
+  const mainContent = 
+  <>
+    <Slider />
+    <section className={st.cardSection}>
+      <Container>
+        <div className={st.cardTitle}>
+          <Heading underline>
+            Marvel Cards
+          </Heading>
+          <Heading lvl={2}>
+            Choose your best five
+          </Heading>
+        </div>
+        <div className={st.cardWrapper}>
+          {
+            characters.map((item) => {
+              return (
+                <CharacterCard
+                  key={item.id}
+                  id={item.id}
+                  charName={item.name}
+                  humanName={item.humanName}
+                  thumb={item.thumbnail.path}
+                  descr={item.description}
+                  isLike={item.isLike}
+                  onLikeClick={handleLikeClick}
+                  onBioClick={handleBioClick}
+                />
+              )
+            })
+          }
+        </div>
+      </Container>
+    </section>
+  </>;
 
   return (
     <div className="App">
       <Header />
-
-      {pageContent}
+      {/* if there is card ID in state (on click on Bio) render <Biography/> instead of main page content */}
+      {id ? <Biography id={id} onBackClick={handleBackClick} /> : mainContent}
 
       <Footer />
     </div>

@@ -10,12 +10,11 @@ import Button from '../../components/Button';
 import Container from '../../components/Container';
 import { BIO } from './BIO';
 
-const Biography = (props) => {
-    const { id, onBackClick, isShownBio } = props;
+const Biography = ({ id, onBackClick }) => {
     let character = BIO[id];
 
     const handleBackClick = () => {
-        onBackClick(isShownBio);
+        onBackClick(id);
     }
 
     return (
@@ -23,7 +22,7 @@ const Biography = (props) => {
             className={cn(st.root)}>
             <Container>
                 <Button
-                    text="Go Back" reversed
+                    text="Go Back" btnStyle="inversed"
                     className={st.btnBack}
                     handleBtnClick={handleBackClick}
                 />
@@ -33,11 +32,9 @@ const Biography = (props) => {
 
                         switch (item.type) {
                             case 'h1':
-                                node = <Heading>{item.text}</Heading>
-                                break;
-
                             case 'h2':
-                                node = <Heading lvl={2}>{item.text}</Heading>
+                                let lvl = item.type.replace(/[^0-9.]/g, '');
+                                node = <Heading lvl={parseInt(lvl, 10)}>{item.text}</Heading>
                                 break;
 
                             case 'paragraph':
