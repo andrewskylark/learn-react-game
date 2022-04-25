@@ -8,11 +8,13 @@ import Container from '../Container';
 const MENU = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4'];
 
 const Header = () => {
-    const [className, setClassName] = useState(null);
-    const addScrollClass = () => {
-        window.scrollY > 60 ? setClassName(st.small) : setClassName(null);
-    }
+    const [mutableClassName, setMutableClassName] = useState(null);
+
     useEffect(() => {
+        const addScrollClass = () => {
+            window.scrollY > 60 ? setMutableClassName(st.small) : setMutableClassName(null);
+        }
+
         window.addEventListener(`scroll`, addScrollClass)
         //componemt will unmount
         return () => {
@@ -22,8 +24,8 @@ const Header = () => {
 
     return (
         <header className={st.root}>
-            
-            <div className={cn(st.header, className)}>
+
+            <div className={cn(st.header, mutableClassName)}>
                 <Container className={st.headerWrap}>
 
                     <div className={st.logo}>
@@ -31,7 +33,7 @@ const Header = () => {
                     </div>
                     <ul className={st.nav}>
                         {MENU.map((item, i) =>
-                            <li key={i} ><a href="!#">{item}</a></li>)}
+                            <li key={i}> <a href="!#">{item}</a> </li>)}
                     </ul>
 
                 </Container>
