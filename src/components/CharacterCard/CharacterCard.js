@@ -13,10 +13,10 @@ const CharacterCard = (props) => {
     const { id, thumb, charName, humanName, descr, isLike, onLikeClick, onBioClick } = props;//деструктуризация пропсов
 
     const handleLikeClick = () => {
-        onLikeClick(id);
+        onLikeClick && onLikeClick(id);// if onLikeClick = true execute onLikeClick(id)
     }
     const handleBioClick = () => {
-        onBioClick(id);
+        onBioClick && onBioClick(id);
     }
 
     return (

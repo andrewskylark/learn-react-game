@@ -8,13 +8,13 @@ import Slider from './components/Slider';
 import Footer from './components/Footer';
 import Heading from './components/Heading';
 import CharacterCard from './components/CharacterCard';
-import CHARACTERS from './components/CharacterCard/CHARACTERS';
+import CHARACTERS from './consts/CHARACTERS';
 import Biography from './pages/Biography';
 
 function App() {
   const [characters, setCharacters] = useState(CHARACTERS);
   const [id, setId] = useState(null);
-  // const characters2 = {...CHARACTERS}// copy arr, but not deep
+  
   const handleLikeClick = (id) => {
 
     setCharacters(prevState => prevState.map((card) => {

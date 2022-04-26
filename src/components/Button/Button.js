@@ -4,20 +4,19 @@ import cn from 'classnames';
 
 import st from './Button.module.scss'
 
-const Button = ({ text, btnStyle, className, handleBtnClick }) => {
+const Button = ({ children, btnStyle, className, handleBtnClick }) => {
 
     return (
         <button
-            onClick={handleBtnClick}
             className={
                 cn(
                     st.root,
                     className,
                     st[`${btnStyle}`],
-                    // { [st.reversed]: reversed }
-                )}>
-
-            {text}
+                )}
+            onClick={handleBtnClick}
+        >
+            {children}
         </button>
     );
 };
@@ -27,7 +26,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-    text: PropTypes.string,
+    children: PropTypes.node,
     btnStyle: PropTypes.string,
     className: PropTypes.string,
     onBtnClick: PropTypes.func,

@@ -8,13 +8,13 @@ import Text from '../../components/Text';
 import Heading from '../../components/Heading';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
-import { BIO } from './BIO';
+import { BIO } from '../../consts/BIO';
 
 const Biography = ({ id, onBackClick }) => {
     let character = BIO[id];
 
     const handleBackClick = () => {
-        onBackClick(id);
+        onBackClick && onBackClick(id);
     }
 
     return (
@@ -22,10 +22,11 @@ const Biography = ({ id, onBackClick }) => {
             className={cn(st.root)}>
             <Container>
                 <Button
-                    text="Go Back" btnStyle="inversed"
+                    btnStyle="inversed"
                     className={st.btnBack}
                     handleBtnClick={handleBackClick}
-                />
+                >Go Back
+                </Button>
                 {
                     character.map((item, i) => {
                         let node;
@@ -60,10 +61,6 @@ const Biography = ({ id, onBackClick }) => {
         </section>
     );
 };
-
-// Biography.defaultProps = {
-//     reversed: false,
-// }
 
 Biography.propTypes = {
     id: PropTypes.number,
