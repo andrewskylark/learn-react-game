@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
 import st from './Header.module.scss';
 import logo from '../../assets/logo.png';
 import Container from '../Container';
 
-const MENU = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4'];
+const MENU = [
+    { page: 'Home', url: '/' },
+    { page: 'Biography', url: '/biography' },
+    { page: 'Contacts', url: '/contacts' },
+    { page: 'About', url: '/about' }
+];
 
 const Header = () => {
     const [mutableClassName, setMutableClassName] = useState(null);
@@ -33,7 +39,7 @@ const Header = () => {
                     </div>
                     <ul className={st.nav}>
                         {MENU.map((item, i) =>
-                            <li key={i}> <a href="!#">{item}</a> </li>)}
+                            <li key={i}> <Link to={item.url}>{item.page}</Link> </li>)}
                     </ul>
 
                 </Container>

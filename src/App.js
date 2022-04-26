@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
+import Layout from './components/Layout';
 import Main from './pages/Main';
 import Biography from './pages/Biography';
 import Contacts from './pages/Contacts';
@@ -11,13 +12,15 @@ function App() {
   // const handleBackClick = () => {
   //   setId(null)
   // }
-
+  //index = path="/"
   return (
     <Routes>
-      <Route path="/" element={<Main/>} />
-      <Route path="/biography" element={<Biography id={1011334}/>} />
-      <Route path="/contacts" element={<Contacts/>} />
-      <Route path="/about" element={<About/>} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path="biography" element={<Biography id={1011334} />} />
+        <Route path="contacts" element={<Contacts />} />
+        <Route path="about" element={<About />} />
+      </Route>
     </Routes>
     // <div className="App">
     //   {id ? <Biography id={id} onBackClick={handleBackClick} /> : mainContent}

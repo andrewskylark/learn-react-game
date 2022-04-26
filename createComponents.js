@@ -1,7 +1,7 @@
 const fs = require('fs');//file stream
 
 const componentName = process.argv[2];
-const componentTemplate = `import st from '.${componentName}.module.scss'
+const componentTemplate = `import st from './${componentName}.module.scss'
 
 const ${componentName} = () => {
     return (
@@ -51,7 +51,7 @@ createComponents.then(async (dirPath) => {
     return dirPath;
 
 }).then(async (dirPath) => {
-    await fs.writeFile(`${dirPath}/Index.js`, indexTemplate, (err) => {
+    await fs.writeFile(`${dirPath}/index.js`, indexTemplate, (err) => {
         if (err !== null) {
             Promise.reject(err)
         }
@@ -60,3 +60,4 @@ createComponents.then(async (dirPath) => {
 }).catch((err) => {
    console.log(err) 
 });
+//node createComponents.js Layout - example of command in console

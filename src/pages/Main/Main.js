@@ -3,9 +3,7 @@ import { useState } from 'react';
 // import cn from 'classnames';
 
 import Container from '../../components/Container';
-import Header from '../../components/Header';
 import Slider from '../../components/Slider';
-import Footer from '../../components/Footer';
 import Heading from '../../components/Heading';
 import CharacterCard from '../../components/CharacterCard';
 import CHARACTERS from '../../consts/CHARACTERS';
@@ -31,7 +29,6 @@ const Main = () => {
 
     return (
         <>
-            <Header />
             <Slider />
             <section className={st.cardSection}>
                 <Container>
@@ -64,7 +61,6 @@ const Main = () => {
                     </div>
                 </Container>
             </section>
-            <Footer />
         </>
     );
 };

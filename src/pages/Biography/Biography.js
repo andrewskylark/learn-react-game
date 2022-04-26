@@ -1,11 +1,9 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Heading from '../../components/Heading';
 import Container from '../../components/Container';
+import Heading from '../../components/Heading';
 import Text from '../../components/Text';
 import Button from '../../components/Button';
 import { BIO } from '../../consts/BIO';
@@ -21,7 +19,6 @@ const Biography = ({ id, onBackClick }) => {
 
     return (
         <>
-            <Header />
             <section
                 className={cn(st.root)}>
                 <Container>
@@ -63,15 +60,14 @@ const Biography = ({ id, onBackClick }) => {
                     }
                 </Container>
             </section>
-            <Footer />
         </>
     );
 };
 
-// Biography.propTypes = {
-//     id: PropTypes.number,
-//     isShownBio: PropTypes.bool,
-//     onBackClick: PropTypes.func,
-// }
+Biography.propTypes = {
+    id: PropTypes.number,
+    isShownBio: PropTypes.bool,
+    onBackClick: PropTypes.func,
+}
 
 export default Biography;
