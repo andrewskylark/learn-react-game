@@ -10,10 +10,13 @@ import Heading from '../Heading';
 import Text from '../Text';
 
 const CharacterCard = (props) => {
-    const { id, thumb, charName, humanName, descr, isLike, onLikeClick } = props;//деструктуризация пропсов
+    const { id, thumb, charName, humanName, descr, isLike, onLikeClick, onBioClick } = props;//деструктуризация пропсов
 
     const handleLikeClick = () => {
         onLikeClick(id);
+    }
+    const handleBioClick = () => {
+        onBioClick(id);
     }
 
     return (
@@ -39,7 +42,8 @@ const CharacterCard = (props) => {
                             <HeartSvg />
                         </div>
                         <div className={st.readBio}>
-                            <a href="!#">Read bio</a>
+                            <a href="!#" onClick={handleBioClick}
+                            >Read bio</a>
                         </div>
                     </div>
                 </div>
@@ -61,6 +65,7 @@ CharacterCard.propTypes = {
     descr: PropTypes.string,
     isLike: PropTypes.bool,
     onLikeClick: PropTypes.func,
+    onBioClick: PropTypes.func,
 }
 
 export default CharacterCard;
