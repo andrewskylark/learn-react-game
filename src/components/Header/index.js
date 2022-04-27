@@ -8,7 +8,7 @@ import Container from '../Container';
 
 const MENU = [
     { page: 'Home', url: '/' },
-    { page: 'Biography', url: '/biography' },
+    { page: 'Characters', url: '/characters' },
     { page: 'Contacts', url: '/contacts' },
     { page: 'About', url: '/about' }
 ];

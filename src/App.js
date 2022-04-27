@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import Biography from './pages/Biography';
 import Contacts from './pages/Contacts';
 import About from './pages/About';
+import Characters from './pages/Characters';
 
 // import st from './App.module.scss';
 
@@ -19,6 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Main />} />
+        <Route path="characters" element={<Characters />} />
         <Route path="biography/:id" element={<Biography id={1011334} />} />
         <Route path="contacts" element={<Contacts />} />
         <Route path="about" element={<About />} />
