@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -15,8 +15,8 @@ const CharacterCard = (props) => {
     const handleLikeClick = () => {
         onLikeClick && onLikeClick(id);// if onLikeClick = true execute onLikeClick(id)
     }
-    const handleBioClick = () => {
-        onBioClick && onBioClick(id);
+    const handleBioClick = (evt) => {
+        onBioClick && onBioClick(id, evt);
     }
 
     return (
@@ -42,8 +42,8 @@ const CharacterCard = (props) => {
                             <HeartSvg />
                         </div>
                         <div className={st.readBio}>
-                            <a href="!#" onClick={handleBioClick}
-                            >Read bio</a>
+                            <Link to={`/biography/${id}`} onClick={handleBioClick}
+                            >Read bio</Link>
                         </div>
                     </div>
                 </div>

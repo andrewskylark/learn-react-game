@@ -12,8 +12,7 @@ import st from './Main.module.scss'
 
 const Main = () => {
     const [characters, setCharacters] = useState(CHARACTERS);
-    const [id, setId] = useState(null);
-
+    // const [id, setId] = useState(null);
     const handleLikeClick = (id) => {
 
         setCharacters(prevState => prevState.map((card) => {
@@ -23,8 +22,9 @@ const Main = () => {
             return card;
         }))
     }
-    const handleBioClick = (id) => {
-        setId(id)
+    const handleBioClick = (id, evt) => {
+        // setId(id)
+        // navigate(`/biography/${id}`)
     }
 
     return (
@@ -67,7 +67,6 @@ const Main = () => {
 
 Main.propTypes = {
     id: PropTypes.number,
-    isShownBio: PropTypes.bool,
     onBackClick: PropTypes.func,
 }
 

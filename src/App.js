@@ -10,12 +10,9 @@ import Characters from './pages/Characters';
 // import st from './App.module.scss';
 
 function App() {
-  // const handleBackClick = () => {
-  //   setId(null)
-  // }
-  //index = path="/"
+  //index === path="/"
   //path="biography/:id" - dynamic path, const { id } = useParams() on Bio page
-
+  // <a> => <Link to={`/biography/${id}`} in Card component, redirects to bio page from current card 
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -26,9 +23,6 @@ function App() {
         <Route path="about" element={<About />} />
       </Route>
     </Routes>
-    // <div className="App">
-    //   {id ? <Biography id={id} onBackClick={handleBackClick} /> : mainContent}
-    // </div>
   );
 }
 
