@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
 import st from './Header.module.scss';
@@ -14,6 +14,7 @@ const MENU = [
 ];
 
 const Header = () => {
+    const navigate = useNavigate();
     const [mutableClassName, setMutableClassName] = useState(null);
 
     useEffect(() => {
@@ -28,13 +29,17 @@ const Header = () => {
         }
     }, []);
 
+    const handleLogoClick = () => {
+        navigate('/');
+    }
+
     return (
         <header className={st.root}>
 
             <div className={cn(st.header, mutableClassName)}>
                 <Container className={st.headerWrap}>
 
-                    <div className={st.logo}>
+                    <div className={st.logo} onClick={handleLogoClick}>
                         <img src={logo} alt="Triple Triad logo png" />
                     </div>
                     <ul className={st.nav}>

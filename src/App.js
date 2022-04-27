@@ -6,18 +6,20 @@ import Biography from './pages/Biography';
 import Contacts from './pages/Contacts';
 import About from './pages/About';
 
-import st from './App.module.scss';
+// import st from './App.module.scss';
 
 function App() {
   // const handleBackClick = () => {
   //   setId(null)
   // }
   //index = path="/"
+  //path="biography/:id" - dynamic path, const { id } = useParams() on Bio page
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Main />} />
-        <Route path="biography" element={<Biography id={1011334} />} />
+        <Route path="biography/:id" element={<Biography id={1011334} />} />
         <Route path="contacts" element={<Contacts />} />
         <Route path="about" element={<About />} />
       </Route>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import { useParams } from 'react-router-dom';
 
 import Container from '../../components/Container';
 import Heading from '../../components/Heading';
@@ -10,7 +11,8 @@ import { BIO } from '../../consts/BIO';
 
 import st from './Biography.module.scss'
 
-const Biography = ({ id, onBackClick }) => {
+const Biography = ({ onBackClick }) => {
+    const { id } = useParams();
     let character = BIO[id];
 
     const handleBackClick = () => {
@@ -65,8 +67,6 @@ const Biography = ({ id, onBackClick }) => {
 };
 
 Biography.propTypes = {
-    id: PropTypes.number,
-    isShownBio: PropTypes.bool,
     onBackClick: PropTypes.func,
 }
 
