@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
 import st from './Header.module.scss';
@@ -43,8 +43,16 @@ const Header = () => {
                         <img src={logo} alt="Triple Triad logo png" />
                     </div>
                     <ul className={st.nav}>
-                        {MENU.map((item, i) =>
-                            <li key={i}> <Link to={item.url}>{item.page}</Link> </li>)}
+                        {
+                            MENU.map((item, i) =>
+                                <li key={i}>
+                                    <NavLink to={item.url}
+                                        className={({ isActive }) => {
+                                            return isActive ? st.active : null;
+                                        }}
+                                    >{item.page}</NavLink>
+                                </li>
+                            )}
                     </ul>
 
                 </Container>
