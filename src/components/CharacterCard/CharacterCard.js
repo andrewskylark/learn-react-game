@@ -39,7 +39,7 @@ const CharacterCard = (props) => {
                             <HeartSvg />
                         </div>
                         <div className={st.readBio}>
-                            <Link to={`/biography/${id}`}
+                            <Link to={`/characters/${id}`}
                             >Read bio</Link>
                         </div>
                     </div>
