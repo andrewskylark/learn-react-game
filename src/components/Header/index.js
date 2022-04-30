@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
 import st from './Header.module.scss';
 import logo from '../../assets/logo.png';
 import Container from '../Container';
 
-const MENU = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4'];
+const MENU = [
+    { page: 'Home', url: '/' },
+    { page: 'Characters', url: '/characters' },
+    { page: 'Contacts', url: '/contacts' },
+    { page: 'About', url: '/about' }
+];
 
 const Header = () => {
+    const navigate = useNavigate();
     const [mutableClassName, setMutableClassName] = useState(null);
 
     useEffect(() => {
@@ -22,18 +29,22 @@ const Header = () => {
         }
     }, []);
 
+    const handleLogoClick = () => {
+        navigate('/');
+    }
+
     return (
         <header className={st.root}>
 
             <div className={cn(st.header, mutableClassName)}>
                 <Container className={st.headerWrap}>
 
-                    <div className={st.logo}>
+                    <div className={st.logo} onClick={handleLogoClick}>
                         <img src={logo} alt="Triple Triad logo png" />
                     </div>
                     <ul className={st.nav}>
                         {MENU.map((item, i) =>
-                            <li key={i}> <a href="!#">{item}</a> </li>)}
+                            <li key={i}> <Link to={item.url}>{item.page}</Link> </li>)}
                     </ul>
 
                 </Container>

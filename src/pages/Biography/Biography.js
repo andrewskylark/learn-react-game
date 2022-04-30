@@ -1,31 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
+import { useParams } from 'react-router-dom';
+
+import Container from '../../components/Container';
+import Heading from '../../components/Heading';
+import Text from '../../components/Text';
+import Button from '../../components/Button';
+import { BIO } from '../../consts/BIO';
 
 import st from './Biography.module.scss'
 
-import Text from '../../components/Text';
-import Heading from '../../components/Heading';
-import Button from '../../components/Button';
-import Container from '../../components/Container';
-import { BIO } from './BIO';
-
-const Biography = ({ id, onBackClick }) => {
+const Biography = ({ onBackClick }) => {
+    const { id } = useParams();
     let character = BIO[id];
 
     const handleBackClick = () => {
-        onBackClick(id);
+        onBackClick && onBackClick(id);
     }
 
     return (
-        <section
-            className={cn(st.root)}>
+        <section className={cn(st.root)}>
             <Container>
                 <Button
-                    text="Go Back" btnStyle="inversed"
+                    btnStyle="inversed"
                     className={st.btnBack}
                     handleBtnClick={handleBackClick}
-                />
+                >Go Back
+                </Button>
                 {
                     character.map((item, i) => {
                         let node;
@@ -61,13 +63,7 @@ const Biography = ({ id, onBackClick }) => {
     );
 };
 
-// Biography.defaultProps = {
-//     reversed: false,
-// }
-
 Biography.propTypes = {
-    id: PropTypes.number,
-    isShownBio: PropTypes.bool,
     onBackClick: PropTypes.func,
 }
 

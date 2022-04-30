@@ -40,6 +40,14 @@
     height: 70px;
     width: 125px;
     display: flex;
+    transition: all 0.3 ease-in-out;
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        
+        transform: scale(1.1);
+    }
 }
 
 .nav {

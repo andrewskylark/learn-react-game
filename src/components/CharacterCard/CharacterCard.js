@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -10,13 +10,10 @@ import Heading from '../Heading';
 import Text from '../Text';
 
 const CharacterCard = (props) => {
-    const { id, thumb, charName, humanName, descr, isLike, onLikeClick, onBioClick } = props;//деструктуризация пропсов
+    const { id, thumb, charName, humanName, descr, isLike, onLikeClick } = props;//деструктуризация пропсов
 
     const handleLikeClick = () => {
-        onLikeClick(id);
-    }
-    const handleBioClick = () => {
-        onBioClick(id);
+        onLikeClick && onLikeClick(id);// if onLikeClick = true execute onLikeClick(id)
     }
 
     return (
@@ -42,8 +39,8 @@ const CharacterCard = (props) => {
                             <HeartSvg />
                         </div>
                         <div className={st.readBio}>
-                            <a href="!#" onClick={handleBioClick}
-                            >Read bio</a>
+                            <Link to={`/biography/${id}`}
+                            >Read bio</Link>
                         </div>
                     </div>
                 </div>
@@ -65,7 +62,6 @@ CharacterCard.propTypes = {
     descr: PropTypes.string,
     isLike: PropTypes.bool,
     onLikeClick: PropTypes.func,
-    onBioClick: PropTypes.func,
 }
 
 export default CharacterCard;

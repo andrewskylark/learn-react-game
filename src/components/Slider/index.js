@@ -17,8 +17,8 @@ const Slider = () => {
                         Wow H2
                     </Heading>
                     <div className={st.call}>
-                        <Button text="Wow"
-                        >
+                        <Button>
+                            Wow
                         </Button>
                     </div>
                 </Container>

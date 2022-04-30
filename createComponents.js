@@ -1,7 +1,8 @@
 const fs = require('fs');//file stream
 
 const componentName = process.argv[2];
-const componentTemplate = `import st from '.${componentName}.module.scss'
+const componentPath = process.argv[3];
+const componentTemplate = `import st from './${componentName}.module.scss'
 
 const ${componentName} = () => {
     return (
@@ -18,7 +19,8 @@ const indexTemplate = `import ${componentName} from './${componentName}';
 export default ${componentName};`;
 
 const createComponents = new Promise((resolve, reject) => {
-    const path = `./src/components/${componentName}`;
+    const path = `./src/${componentPath}/${componentName}`;
+
     if (fs.existsSync(path)) {
         reject('Component exists');
     }
@@ -51,12 +53,14 @@ createComponents.then(async (dirPath) => {
     return dirPath;
 
 }).then(async (dirPath) => {
-    await fs.writeFile(`${dirPath}/Index.js`, indexTemplate, (err) => {
+    await fs.writeFile(`${dirPath}/index.js`, indexTemplate, (err) => {
         if (err !== null) {
-            Promise.reject(err)
+            console.log('Something wrong ', err); 
         }
     });
     return dirPath;
 }).catch((err) => {
-   console.log(err) 
+    console.log('Something wrong ', err); 
 });
+//create.sh file in root folder
+//bash create.sh - example of command in terminal
