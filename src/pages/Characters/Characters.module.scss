@@ -1,4 +1,4 @@
-.cardSection {
+.root {
     display: flex;
     justify-content: center;
     padding: 24px 0;
@@ -11,7 +11,8 @@
   }
   
   .cardWrapper {
+    margin-bottom: 12px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 12px;
+    gap: 20px;
   }

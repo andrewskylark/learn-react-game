@@ -20,49 +20,46 @@ const Biography = ({ onBackClick }) => {
     }
 
     return (
-        <>
-            <section
-                className={cn(st.root)}>
-                <Container>
-                    <Button
-                        btnStyle="inversed"
-                        className={st.btnBack}
-                        handleBtnClick={handleBackClick}
-                    >Go Back
-                    </Button>
-                    {
-                        character.map((item, i) => {
-                            let node;
+        <section className={cn(st.root)}>
+            <Container>
+                <Button
+                    btnStyle="inversed"
+                    className={st.btnBack}
+                    handleBtnClick={handleBackClick}
+                >Go Back
+                </Button>
+                {
+                    character.map((item, i) => {
+                        let node;
 
-                            switch (item.type) {
-                                case 'h1':
-                                case 'h2':
-                                    let lvl = item.type.replace(/[^0-9.]/g, '');
-                                    node = <Heading lvl={parseInt(lvl, 10)}>{item.text}</Heading>
-                                    break;
+                        switch (item.type) {
+                            case 'h1':
+                            case 'h2':
+                                let lvl = item.type.replace(/[^0-9.]/g, '');
+                                node = <Heading lvl={parseInt(lvl, 10)}>{item.text}</Heading>
+                                break;
 
-                                case 'paragraph':
-                                    node = <Text>{item.text}</Text>
-                                    break;
+                            case 'paragraph':
+                                node = <Text>{item.text}</Text>
+                                break;
 
-                                case 'img':
-                                    node = <img src={item.src} alt={`изображение к биографии персонажа`}></img>
-                                    break;
+                            case 'img':
+                                node = <img src={item.src} alt={`изображение к биографии персонажа`}></img>
+                                break;
 
-                                default:
-                                    break;
-                            }
+                            default:
+                                break;
+                        }
 
-                            return (
-                                <React.Fragment key={i}>
-                                    {node}
-                                </React.Fragment>
-                            )
-                        })
-                    }
-                </Container>
-            </section>
-        </>
+                        return (
+                            <React.Fragment key={i}>
+                                {node}
+                            </React.Fragment>
+                        )
+                    })
+                }
+            </Container>
+        </section>
     );
 };
 

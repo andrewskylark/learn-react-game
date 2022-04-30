@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-// import cn from 'classnames';
 
 import Container from '../../components/Container';
 import Slider from '../../components/Slider';
@@ -12,7 +11,6 @@ import st from './Main.module.scss'
 
 const Main = () => {
     const [characters, setCharacters] = useState(CHARACTERS);
-    // const [id, setId] = useState(null);
     const handleLikeClick = (id) => {
 
         setCharacters(prevState => prevState.map((card) => {
@@ -21,10 +19,6 @@ const Main = () => {
             }
             return card;
         }))
-    }
-    const handleBioClick = (id, evt) => {
-        // setId(id)
-        // navigate(`/biography/${id}`)
     }
 
     return (
@@ -53,7 +47,6 @@ const Main = () => {
                                         descr={item.description}
                                         isLike={item.isLike}
                                         onLikeClick={handleLikeClick}
-                                        onBioClick={handleBioClick}
                                     />
                                 )
                             })
@@ -67,7 +60,6 @@ const Main = () => {
 
 Main.propTypes = {
     id: PropTypes.number,
-    onBackClick: PropTypes.func,
 }
 
 export default Main;
