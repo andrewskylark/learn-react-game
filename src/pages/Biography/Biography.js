@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Container from '../../components/Container';
 import Heading from '../../components/Heading';
@@ -11,12 +10,13 @@ import { BIO } from '../../consts/BIO';
 
 import st from './Biography.module.scss'
 
-const Biography = ({ onBackClick }) => {
+const Biography = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     let character = BIO[id];
 
     const handleBackClick = () => {
-        onBackClick && onBackClick(id);
+        navigate(-1); //go to prev page
     }
 
     return (
@@ -62,9 +62,5 @@ const Biography = ({ onBackClick }) => {
         </section>
     );
 };
-
-Biography.propTypes = {
-    onBackClick: PropTypes.func,
-}
 
 export default Biography;

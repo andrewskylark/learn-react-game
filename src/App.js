@@ -6,6 +6,7 @@ import Biography from './pages/Biography';
 import Contacts from './pages/Contacts';
 import About from './pages/About';
 import Characters from './pages/Characters';
+import NotFound from './pages/NotFound';
 
 function App() {
   //index === path="/"
@@ -19,6 +20,7 @@ function App() {
         <Route path="characters/:id" element={<Biography />} />
         <Route path="contacts" element={<Contacts />} />
         <Route path="about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
