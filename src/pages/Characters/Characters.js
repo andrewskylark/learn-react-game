@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-// import cn from 'classnames';
 
 import Container from '../../components/Container';
 import Heading from '../../components/Heading';
