@@ -7,11 +7,24 @@ import './index.scss';
 import App from './App';
 
 const ScrollToTop = () => {
-    const { pathname } = useLocation();
+    const { pathname, hash } = useLocation();
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
+
+    useEffect(() => {
+        if (hash !== null) {
+            setTimeout(() => {
+                let titleScrollTo = document.getElementById(hash);
+        
+                titleScrollTo && titleScrollTo.scrollIntoView({
+                    block: 'center',
+                    behavior: 'smooth'
+                });
+            }, 2000)
+        }
+    }, [hash]);
 
     return null;
 }

@@ -25,14 +25,14 @@ const Biography = () => {
         navigate(-1); //go to prev page
     }
 
-    setTimeout(() => {
-        let titleScrollTo = document.getElementById(window.location.hash);
+    // setTimeout(() => {
+    //     let titleScrollTo = document.getElementById(window.location.hash);
 
-        titleScrollTo && titleScrollTo.scrollIntoView({
-            block: 'center',
-            behavior: 'smooth'
-        });
-    }, 3000)
+    //     titleScrollTo && titleScrollTo.scrollIntoView({
+    //         block: 'center',
+    //         behavior: 'smooth'
+    //     });
+    // }, 3000)
 
     return (
         <section className={cn(st.root)}>
