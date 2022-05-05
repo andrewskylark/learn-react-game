@@ -47,9 +47,7 @@ const Header = () => {
                             MENU.map((item, i) =>
                                 <li key={i}>
                                     <NavLink to={item.url}
-                                        className={({ isActive }) => {
-                                            return isActive ? st.active : null;
-                                        }}
+                                        className={({ isActive }) => isActive ? st.active : null}
                                     >{item.page}</NavLink>
                                 </li>
                             )}
