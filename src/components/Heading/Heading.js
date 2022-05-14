@@ -4,18 +4,26 @@ import PropTypes from 'prop-types'
 
 import st from './Heading.module.scss';
 
+import { ReactComponent as LinkIcon } from './assets/link_icon.svg';
+
 const Heading = (props) => {
-    const { children, lvl = 1 , className, underline} = props;//деструктуризация пропсов
+    const { children, lvl = 1, className, underline, anchorLink } = props;//деструктуризация пропсов
     const el = `h${lvl}`;
-    
+
     return React.createElement(el, {
         className: cn(
             st.root,
-            st[`lvl${lvl}`], 
-            className, 
-            {[st.underline]: underline}
-            )
-    }, children)
+            st[`lvl${lvl}`],
+            className,
+            { [st.underline]: underline }
+        )
+    }, children,
+        anchorLink ? 
+        <a href={anchorLink} id={anchorLink}>
+            <LinkIcon />
+        </a> 
+        : null
+    )
 
 }
 
@@ -28,5 +36,6 @@ Heading.propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
     underline: PropTypes.bool,
+    anchorLink: PropTypes.string,
 }
 export default Heading;

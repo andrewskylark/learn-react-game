@@ -63,10 +63,6 @@
     position: relative;
 }
 
-.nav li a {
-    transition: color 0.2s linear;
-}
-
 .nav li:hover a {
     color: red;
 }
@@ -75,13 +71,10 @@
     padding: 21px;
     color: initial;
     text-decoration: initial;
+
+    transition: color 0.2s linear;
 }
 
-// .header.small .logo {
-//     width: 89px;
-//     height: 50px;
-// }
-
-// .header.small .nav  {
-//     font-size: 16px;
-// }
+.nav li a.active {
+    color: red;
+}
