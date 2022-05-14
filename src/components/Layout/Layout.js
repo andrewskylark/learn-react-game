@@ -13,14 +13,16 @@ const Layout = () => {
 
     useEffect(() => {
         if (hash) {
-            setTimeout(() => {
-                let titleScrollTo = document.getElementById(hash);
+            let titleScrollTo = document.getElementById(hash);
 
+            window.addEventListener('load', () => {
                 titleScrollTo && titleScrollTo.scrollIntoView({
                     block: 'center',
                     behavior: 'smooth'
                 });
-            }, 2000)
+            }, {// EventListener has options; this once - no need to remove Listener 
+                once: true,
+            })
         } else {
             window.scrollTo(0, 0);
         }
