@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import cn from 'classnames';
 
 import logo from './assets/logo.png';
@@ -9,62 +10,76 @@ import Button from '../../components/Button';
 import st from './LoginPage.module.scss';
 
 const LoginPage = () => {
+    const [active, setActive] = useState(false);
+
+    const handleToggleClick = () => {
+        setActive(prevState => !prevState);
+        console.log('click')
+        console.log(active)
+    }
+
+    const handleCloseClick = () => {
+        setActive(prevState => !prevState);
+        console.log('click close')
+        console.log(active)
+    }
+
     return (
-            <section className={st.root}>
-                <div className={st['header-logo']}>
-                    <img src={logo} alt="Logo" />
-                </div>
-                <div className={st.container}>
-                    <div className={st.card}></div>
-                    <div className={st.card}>
-                        <Heading className={st.title}>Login</Heading>
-                        <form>
-                            <div className={st['input-container']}>
-                                <Input type='email' id='email' label='Email'>
-                                    <div className={st.bar}></div>
-                                </Input>
-                            </div>
-                            <div className={st['input-container']}>
-                                <Input type='password' id='password' label='Password'>
-                                    <div className={st.bar}></div>
-                                </Input>
-                            </div>
-                            <div className={st['button-container']}>
-                                <Button><span>Go</span></Button>
-                            </div>
-                        </form>
-                    </div>
-                    <div className={cn(st.card, st.alt)}>
-                        <div className={st.toggle}>
-                            <ToggleIcon />
+        <section className={st.root}>
+            <div className={st['header-logo']}>
+                <img src={logo} alt="Logo" />
+            </div>
+            <div className={cn(st.container, { [st.active]: active })}>
+                <div className={st.card}></div>
+                <div className={st.card}>
+                    <Heading className={st.title}>Login</Heading>
+                    <form>
+                        <div className={st['input-container']}>
+                            <Input type='email' id='email' label='Email'>
+                                <div className={st.bar}></div>
+                            </Input>
                         </div>
-                        <Heading className={st.title}>
-                            Register
-                            <div className={st.close}></div>
-                        </Heading>
-                        <form>
-                            <div className={st['input-container']}>
-                                <Input type='email' id='signup-email' label='Email'>
-                                    <div className={st.bar}></div>
-                                </Input>
-                            </div>
-                            <div className={st['input-container']}>
-                                <Input type='password' id='signup-password' label='Password'>
-                                    <div className={st.bar}></div>
-                                </Input>
-                            </div>
-                            <div className={st['input-container']}>
-                                <Input type='password' id='signup-repeat-password' label='Repeat Password'>
-                                    <div className={st.bar}></div>
-                                </Input>
-                            </div>
-                            <div className={st['button-container']}>
-                                <Button><span>Register</span></Button>
-                            </div>
-                        </form>
-                    </div>
+                        <div className={st['input-container']}>
+                            <Input type='password' id='password' label='Password'>
+                                <div className={st.bar}></div>
+                            </Input>
+                        </div>
+                        <div className={st['button-container']}>
+                            <Button><span>Go</span></Button>
+                        </div>
+                    </form>
                 </div>
-            </section>
+                <div className={cn(st.card, st.alt)}>
+                    <div className={cn(st.toggle, { [st.active]: active })} onClick={handleToggleClick}>
+                        <ToggleIcon />
+                    </div>
+                    <Heading className={st.title}>
+                        Register
+                        <div className={st.close} onClick={handleCloseClick}></div>
+                    </Heading>
+                    <form>
+                        <div className={st['input-container']}>
+                            <Input type='email' id='signup-email' label='Email'>
+                                <div className={st.bar}></div>
+                            </Input>
+                        </div>
+                        <div className={st['input-container']}>
+                            <Input type='password' id='signup-password' label='Password'>
+                                <div className={st.bar}></div>
+                            </Input>
+                        </div>
+                        <div className={st['input-container']}>
+                            <Input type='password' id='signup-repeat-password' label='Repeat Password'>
+                                <div className={st.bar}></div>
+                            </Input>
+                        </div>
+                        <div className={st['button-container']}>
+                            <Button><span>Register</span></Button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
     );
 };
 

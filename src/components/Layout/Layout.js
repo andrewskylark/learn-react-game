@@ -34,7 +34,7 @@ const Layout = () => {
             { !matchLogin ? <Header /> : null} 
             <main className={st.main}>
                 {
-                    match ? <Outlet /> :
+                    match || matchLogin ? <Outlet /> :
                         <Container>
                             {/* Outlet = {children} */}
                             <Outlet />

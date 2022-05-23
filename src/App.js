@@ -24,7 +24,6 @@ function App() {
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<LoginPage />} />
       </Route>
-      {/* <Route path="/login" element={<LoginPage />} /> */}
     </Routes>
   );
 }
