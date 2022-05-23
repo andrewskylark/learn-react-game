@@ -1,7 +1,7 @@
 import { Outlet, useMatch } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import React, { useEffect } from "react";
 import st from './Layout.module.scss';
-import { useLocation } from 'react-router-dom';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -9,6 +9,7 @@ import Container from '../Container';
 
 const Layout = () => {
     const match = useMatch({ path: '/' });
+    const matchLogin = useMatch({ path: '/login' });
     const { pathname, hash } = useLocation();
 
     useEffect(() => {
@@ -30,7 +31,7 @@ const Layout = () => {
 
     return (
         <div className={st.root}>
-            <Header />
+            { !matchLogin ? <Header /> : null} 
             <main className={st.main}>
                 {
                     match ? <Outlet /> :

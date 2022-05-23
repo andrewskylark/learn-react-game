@@ -23,8 +23,9 @@ const Biography = () => {
     const handleBackClick = () => {
         navigate(-1); //go to prev page
     }
-
+    
     return (
+        
         <section className={cn(st.root)}>
             <Container>
                 <Button
