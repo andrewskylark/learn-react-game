@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import cn from 'classnames';
 
 import logo from './assets/logo.png';
@@ -11,17 +11,20 @@ import st from './LoginPage.module.scss';
 
 const LoginPage = () => {
     const [active, setActive] = useState(false);
+    const signinRef = useRef(null);
+    const signupRef = useRef(null);
+    // This is equivalent to our componentDidMount, this will focus input
+    useEffect(() => signinRef.current && signinRef.current.focus());
 
     const handleToggleClick = () => {
         setActive(prevState => !prevState);
-        console.log('click')
-        console.log(active)
+        //sets focus in signup email, timeout for animation of popup
+        setTimeout(() => {
+            signupRef.current && signupRef.current.focus();
+        }, 1000) 
     }
-
     const handleCloseClick = () => {
         setActive(prevState => !prevState);
-        console.log('click close')
-        console.log(active)
     }
 
     return (
@@ -35,7 +38,7 @@ const LoginPage = () => {
                     <Heading className={st.title}>Login</Heading>
                     <form>
                         <div className={st['input-container']}>
-                            <Input type='email' id='email' label='Email'>
+                            <Input type='email' id='email' label='Email' inputRef={signinRef}>
                                 <div className={st.bar}></div>
                             </Input>
                         </div>
@@ -49,6 +52,7 @@ const LoginPage = () => {
                         </div>
                     </form>
                 </div>
+
                 <div className={cn(st.card, st.alt)}>
                     <div className={cn(st.toggle, { [st.active]: active })} onClick={handleToggleClick}>
                         <ToggleIcon />
@@ -59,7 +63,7 @@ const LoginPage = () => {
                     </Heading>
                     <form>
                         <div className={st['input-container']}>
-                            <Input type='email' id='signup-email' label='Email'>
+                            <Input type='email' id='signup-email' label='Email' inputRef={signupRef}>
                                 <div className={st.bar}></div>
                             </Input>
                         </div>

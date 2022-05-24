@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types';
 
-const Input = ({ type, id, label, children, required = true }) => {
+const Input = ({ type, id, label, children, required = true, inputRef }) => {
+
     return (
         <>
-            <input type={type} id={`#${id}`} required={required ? "required" : null} />
+            <input type={type} id={`#${id}`} 
+            required={required ? "required" : null}
+            ref={inputRef && inputRef}
+            />
             <label htmlFor={`#${id}`}>{label}</label>
             {children}
         </>
