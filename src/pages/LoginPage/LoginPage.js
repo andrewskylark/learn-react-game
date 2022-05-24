@@ -11,10 +11,12 @@ import st from './LoginPage.module.scss';
 
 const LoginPage = () => {
     const [active, setActive] = useState(false);
-    const [signInForm, setSignInForm] = useState({});
-    const [signUpForm, setSignUpForm] = useState({});
+    const [form, setForm] = useState({});
+
     const signinRef = useRef(null);
     const signupRef = useRef(null);
+    const signinFormRef = useRef(null);
+    const signupFormRef = useRef(null);
 
     useEffect(() => {
         //focus form input on Load
@@ -27,7 +29,7 @@ const LoginPage = () => {
 
     const handleToggleClick = () => {
         setActive(prevState => !prevState);
-        //sets focus in signup email, timeout for animation of popup
+        //sets focus in signup email, timeout for animation of popup to appear
         setTimeout(() => {
             signupRef.current && signupRef.current.focus();
         }, 1000)
@@ -36,25 +38,18 @@ const LoginPage = () => {
         setActive(prevState => !prevState);
         signinRef.current && signinRef.current.focus();
     }
-    const handleChangeSignIn = (evt) => {
-        setSignInForm(prevState => ({
+
+    const handleChangeForm = (evt) => {
+        setForm(prevState => ({
             ...prevState,
             [evt.target.name]: evt.target.value,
         }))
+        
     }
-    const handleSubmitSignIn = (evt) => {
+    const handleSubmitForm = (evt) => {
         evt.preventDefault();
-        console.log(signInForm)
-    }
-    const handleChangeSignUp = (evt) => {
-        setSignUpForm(prevState => ({
-            ...prevState,
-            [evt.target.name]: evt.target.value,
-        }))
-    }
-    const handleSubmitSignUp = (evt) => {
-        evt.preventDefault();
-        console.log(signUpForm)
+        console.log(form)
+        evt.target.reset();//resets current form
     }
 
     return (
@@ -67,7 +62,7 @@ const LoginPage = () => {
                 <div className={st.card}>
                     <Heading className={st.title}>Login</Heading>
 
-                    <form onChange={handleChangeSignIn} onSubmit={handleSubmitSignIn} >
+                    <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
                         <div className={st['input-container']}>
                             <Input type='email' id='email' label='Email' name='email'
                                 inputRef={signinRef}>
@@ -93,7 +88,8 @@ const LoginPage = () => {
                         Register
                         <div className={st.close} onClick={handleCloseClick}></div>
                     </Heading>
-                    <form onChange={handleChangeSignUp} onSubmit={handleSubmitSignUp}>
+                    
+                    <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
                         <div className={st['input-container']}>
                             <Input type='email' id='signup-email' label='Email' name='email'
                                 inputRef={signupRef}>
