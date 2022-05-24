@@ -44,12 +44,20 @@ const LoginPage = () => {
             ...prevState,
             [evt.target.name]: evt.target.value,
         }))
-        
+
     }
     const handleSubmitForm = (evt) => {
         evt.preventDefault();
-        console.log(form)
-        evt.target.reset();//resets current form
+
+        if (form.repeatPassword && form.repeatPassword !== form.password) {
+            alert('passwords do not match!');// checks pass & repeat pass for register form match
+        } else {
+            console.log(form);
+            evt.target.reset();//resets current form
+        }
+    }
+    const handleResetForm = () => {
+        setForm({});
     }
 
     return (
@@ -62,7 +70,7 @@ const LoginPage = () => {
                 <div className={st.card}>
                     <Heading className={st.title}>Login</Heading>
 
-                    <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
+                    <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} onReset={handleResetForm} >
                         <div className={st['input-container']}>
                             <Input type='email' id='email' label='Email' name='email'
                                 inputRef={signinRef}>
@@ -88,8 +96,8 @@ const LoginPage = () => {
                         Register
                         <div className={st.close} onClick={handleCloseClick}></div>
                     </Heading>
-                    
-                    <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
+
+                    <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} onReset={handleResetForm} >
                         <div className={st['input-container']}>
                             <Input type='email' id='signup-email' label='Email' name='email'
                                 inputRef={signupRef}>
