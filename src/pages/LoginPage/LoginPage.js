@@ -8,9 +8,11 @@ import Input from '../../components/Input/Input';
 import Button from '../../components/Button';
 
 import st from './LoginPage.module.scss';
+import Text from '../../components/Text/Text';
 
 const LoginPage = () => {
     const [active, setActive] = useState(false);
+    const [errShown, setErrShown] = useState(false);
     const [form, setForm] = useState({});
 
     const signinRef = useRef(null);
@@ -44,20 +46,20 @@ const LoginPage = () => {
             ...prevState,
             [evt.target.name]: evt.target.value,
         }))
+        console.log(form);
 
     }
     const handleSubmitForm = (evt) => {
         evt.preventDefault();
 
         if (form.repeatPassword && form.repeatPassword !== form.password) {
-            alert('passwords do not match!');// checks pass & repeat pass for register form match
+            setErrShown(true);
         } else {
             console.log(form);
             evt.target.reset();//resets current form
+            setForm({});
+            setErrShown(false);
         }
-    }
-    const handleResetForm = () => {
-        setForm({});
     }
 
     return (
@@ -70,7 +72,7 @@ const LoginPage = () => {
                 <div className={st.card}>
                     <Heading className={st.title}>Login</Heading>
 
-                    <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} onReset={handleResetForm} >
+                    <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm}>
                         <div className={st['input-container']}>
                             <Input type='email' id='email' label='Email' name='email'
                                 inputRef={signinRef}>
@@ -83,7 +85,7 @@ const LoginPage = () => {
                             </Input>
                         </div>
                         <div className={st['button-container']}>
-                            <Button><span>Go</span></Button>
+                            <Button btnStyle='card'><span>Go</span></Button>
                         </div>
                     </form>
                 </div>
@@ -97,7 +99,7 @@ const LoginPage = () => {
                         <div className={st.close} onClick={handleCloseClick}></div>
                     </Heading>
 
-                    <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} onReset={handleResetForm} >
+                    <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
                         <div className={st['input-container']}>
                             <Input type='email' id='signup-email' label='Email' name='email'
                                 inputRef={signupRef}>
@@ -111,11 +113,12 @@ const LoginPage = () => {
                         </div>
                         <div className={st['input-container']}>
                             <Input type='password' id='signup-repeat-password' label='Repeat Password' name='repeatPassword'>
+                                {errShown && <Text className={st.err} >Passwords do not match</Text>}
                                 <div className={st.bar}></div>
                             </Input>
                         </div>
                         <div className={st['button-container']}>
-                            <Button><span>Register</span></Button>
+                            <Button btnStyle='card-alt'><span>Register</span></Button>
                         </div>
                     </form>
                 </div>

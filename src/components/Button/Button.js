@@ -5,6 +5,7 @@ import cn from 'classnames';
 import st from './Button.module.scss'
 
 const Button = ({ children, btnStyle, className, handleBtnClick }) => {
+    console.log(st)
 
     return (
         <button

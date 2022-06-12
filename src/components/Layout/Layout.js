@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 import Container from '../Container';
 
 const Layout = () => {
-    const match = useMatch({ path: '/' });
+    const matchHome = useMatch({ path: '/' });
     const matchLogin = useMatch({ path: '/login' });
     const { pathname, hash } = useLocation();
 
@@ -31,10 +31,11 @@ const Layout = () => {
 
     return (
         <div className={st.root}>
-            { !matchLogin ? <Header /> : null} 
+            {!matchLogin ? <Header /> : null}
             <main className={st.main}>
                 {
-                    match || matchLogin ? <Outlet /> :
+                    matchHome || matchLogin ?
+                        <Outlet /> :
                         <Container>
                             {/* Outlet = {children} */}
                             <Outlet />

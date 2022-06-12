@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 
 const Input = ({ type, id, label, name, children, required = true, inputRef }) => {
-
     return (
         <>
-            <input type={type} id={`#${id}`} name={name} 
+            <input 
+            type={type} 
+            id={`#${id}`} 
+            name={name} 
             required={required ? "required" : null}
             ref={inputRef && inputRef}
             />
