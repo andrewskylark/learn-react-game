@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 import st from './Heading.module.scss';
 
@@ -38,4 +38,5 @@ Heading.propTypes = {
     underline: PropTypes.bool,
     anchorLink: PropTypes.string,
 }
+
 export default Heading;

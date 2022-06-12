@@ -7,6 +7,7 @@ import Contacts from './pages/Contacts';
 import About from './pages/About';
 import Characters from './pages/Characters';
 import NotFound from './pages/NotFound';
+import LoginPage from './pages/LoginPage/LoginPage';
 
 function App() {
   //index === path="/"
@@ -21,6 +22,7 @@ function App() {
         <Route path="contacts" element={<Contacts />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/login" element={<LoginPage />} />
       </Route>
     </Routes>
   );

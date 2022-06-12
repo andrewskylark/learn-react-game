@@ -23,8 +23,9 @@ const Biography = () => {
     const handleBackClick = () => {
         navigate(-1); //go to prev page
     }
-
+    
     return (
+        
         <section className={cn(st.root)}>
             <Container>
                 <Button
@@ -40,13 +41,11 @@ const Biography = () => {
                         switch (item.type) {
                             case 'h1':
                             case 'h2':
-                                let lvl = item.type.replace(/[^0-9.]/g, '');
-                                let anchorLink = item.text.replace(/\s/g, '_');
 
                                 node =
                                     <Heading 
-                                    lvl={parseInt(lvl, 10)}
-                                    anchorLink={`#${anchorLink}`}
+                                    lvl={parseInt(item.type.replace(/[^0-9.]/g, ''), 10)}
+                                    anchorLink={`#${item.text.replace(/\s/g, '_')}`}
                                     >
                                         {item.text}
                                     </Heading>
