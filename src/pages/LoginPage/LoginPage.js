@@ -46,8 +46,6 @@ const LoginPage = () => {
             ...prevState,
             [evt.target.name]: evt.target.value,
         }))
-        console.log(form);
-
     }
     const handleSubmitForm = (evt) => {
         evt.preventDefault();
@@ -74,8 +72,7 @@ const LoginPage = () => {
 
                     <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm}>
                         <div className={st['input-container']}>
-                            <Input type='email' id='email' label='Email' name='email'
-                                inputRef={signinRef}>
+                            <Input type='email' id='email' label='Email' name='email' ref={signinRef}>
                                 <div className={st.bar}></div>
                             </Input>
                         </div>
@@ -101,8 +98,7 @@ const LoginPage = () => {
 
                     <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
                         <div className={st['input-container']}>
-                            <Input type='email' id='signup-email' label='Email' name='email'
-                                inputRef={signupRef}>
+                            <Input type='email' id='signup-email' label='Email' name='email' ref={signupRef}>
                                 <div className={st.bar}></div>
                             </Input>
                         </div>
@@ -113,7 +109,7 @@ const LoginPage = () => {
                         </div>
                         <div className={st['input-container']}>
                             <Input type='password' id='signup-repeat-password' label='Repeat Password' name='repeatPassword'>
-                                {errShown && <Text className={st.err} >Passwords do not match</Text>}
+                                {errShown && <Text className={st.err}>Passwords do not match</Text>}
                                 <div className={st.bar}></div>
                             </Input>
                         </div>
