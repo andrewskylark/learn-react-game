@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import Container from '../../components/Container';
 import Slider from '../../components/Slider';
@@ -9,8 +9,12 @@ import CHARACTERS from '../../consts/CHARACTERS';
 
 import st from './Main.module.scss'
 
-const Main = () => {
+const Main = ({context}) => {
     const [characters, setCharacters] = useState(CHARACTERS);
+    const { likedCards, setLikedCards } = useContext(context)
+
+    console.log(likedCards)
+
     const handleLikeClick = (id) => {
 
         setCharacters(prevState => prevState.map((card) => {
@@ -19,6 +23,9 @@ const Main = () => {
             }
             return card;
         }))
+
+        // setLike((prevState) => characters.filter((card) => card.isLike === true))
+        setLikedCards(characters);
     }
 
     return (
