@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Container from '../../components/Container';
@@ -10,8 +10,7 @@ import st from './Characters.module.scss'
 
 const Characters = ({ context }) => {
     const [characters, setCharacters] = useState(CHARACTERS);
-    const { likedCards } = useContext(context);
-    console.log(likedCards)
+    const { likedCards, setLikedCards } = useContext(context);
 
     const handleLikeClick = (id) => {
 
@@ -22,6 +21,11 @@ const Characters = ({ context }) => {
             return card;
         }))
     }
+
+    useEffect(() => {
+        setLikedCards(characters);
+    }, [characters]);
+
 
     return (
         <section className={st.root}>
