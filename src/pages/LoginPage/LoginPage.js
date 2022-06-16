@@ -40,7 +40,6 @@ const LoginPage = () => {
         setActive(prevState => !prevState);
         signinRef.current && signinRef.current.focus();
     }
-
     const handleChangeForm = (evt) => {
         setForm(prevState => ({
             ...prevState,
@@ -55,11 +54,11 @@ const LoginPage = () => {
         } else {
             console.log(form);
             evt.target.reset();//resets current form
-            setForm({});
+            setForm({})
             setErrShown(false);
         }
     }
-
+    
     return (
         <section className={st.root}>
             <div className={st['header-logo']}>
@@ -71,16 +70,10 @@ const LoginPage = () => {
                     <Heading className={st.title}>Login</Heading>
 
                     <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm}>
-                        <div className={st['input-container']}>
-                            <Input type='email' id='email' label='Email' name='email' ref={signinRef}>
-                                <div className={st.bar}></div>
-                            </Input>
-                        </div>
-                        <div className={st['input-container']}>
-                            <Input type='password' id='password' label='Password' name='password'>
-                                <div className={st.bar}></div>
-                            </Input>
-                        </div>
+                        <Input type='email' id='email' label='Email' name='email' ref={signinRef}>
+                        </Input>
+                        <Input type='password' id='password' label='Password' name='password'>
+                        </Input>
                         <div className={st['button-container']}>
                             <Button btnStyle='card'><span>Go</span></Button>
                         </div>
@@ -97,22 +90,13 @@ const LoginPage = () => {
                     </Heading>
 
                     <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
-                        <div className={st['input-container']}>
-                            <Input type='email' id='signup-email' label='Email' name='email' ref={signupRef}>
-                                <div className={st.bar}></div>
-                            </Input>
-                        </div>
-                        <div className={st['input-container']}>
-                            <Input type='password' id='signup-password' label='Password' name='password'>
-                                <div className={st.bar}></div>
-                            </Input>
-                        </div>
-                        <div className={st['input-container']}>
-                            <Input type='password' id='signup-repeat-password' label='Repeat Password' name='repeatPassword'>
-                                {errShown && <Text className={st.err}>Passwords do not match</Text>}
-                                <div className={st.bar}></div>
-                            </Input>
-                        </div>
+                        <Input className={st.inputContainer} inputStyle='alt' type='email' id='signup-email' label='Email' name='email' ref={signupRef}>
+                        </Input>
+                        <Input className={st.inputContainer} inputStyle='alt' type='password' id='signup-password' label='Password' name='password'>
+                        </Input>
+                        <Input className={st.inputContainer} inputStyle='alt' type='password' id='signup-repeat-password' label='Repeat Password' name='repeatPassword'>
+                            {errShown && <Text className={st.err}>Passwords do not match</Text>}
+                        </Input>
                         <div className={st['button-container']}>
                             <Button btnStyle='card-alt'><span>Register</span></Button>
                         </div>
