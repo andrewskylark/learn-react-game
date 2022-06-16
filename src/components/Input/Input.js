@@ -1,17 +1,25 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import st from './Input.module.scss'
 // React.forwardRef((props, ref) => {}) using just ref could be unstable
 const Input = React.forwardRef((props, ref) => {
-    const { type, id, label, name, children, required = true, className, defaultValue, inputStyle, onChange} = props;
-
+    const { type, id, label, name, children, required = true, className, defaultValue, inputStyle, onChange, emptyForm} = props;
     const [value, setValue] = useState(defaultValue ? defaultValue : '');
 
     const handleChange = (evt) => {
         setValue(evt.target.value);
         onChange && onChange(evt);
     }
+
+    useEffect(() => {
+        if (emptyForm === undefined) {
+            return;
+        }
+        if (Object.keys(emptyForm).length === 0) {
+            setValue('');
+        }
+    }, [emptyForm]);
 
     return (
         <div className={cn(st.root, className, st[`${inputStyle}`])}>
@@ -42,6 +50,7 @@ Input.propTypes = {
     className: PropTypes.string,
     inputStyle: PropTypes.string,
     onChange: PropTypes.func,
+    emptyForm: PropTypes.object,
 }
 
 export default Input;

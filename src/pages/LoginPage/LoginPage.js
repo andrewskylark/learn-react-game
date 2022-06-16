@@ -17,8 +17,6 @@ const LoginPage = () => {
 
     const signinRef = useRef(null);
     const signupRef = useRef(null);
-    const signinFormRef = useRef(null);
-    const signupFormRef = useRef(null);
 
     useEffect(() => {
         //focus form input on Load
@@ -30,6 +28,7 @@ const LoginPage = () => {
     }, []);
 
     const handleToggleClick = () => {
+        setForm({});
         setActive(prevState => !prevState);
         //sets focus in signup email, timeout for animation of popup to appear
         setTimeout(() => {
@@ -69,10 +68,10 @@ const LoginPage = () => {
                 <div className={st.card}>
                     <Heading className={st.title}>Login</Heading>
 
-                    <form ref={signinFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm}>
-                        <Input type='email' id='email' label='Email' name='email' ref={signinRef}>
+                    <form onChange={handleChangeForm} onSubmit={handleSubmitForm}>
+                        <Input type='email' id='email' label='Email' name='email' ref={signinRef} emptyForm={form}>
                         </Input>
-                        <Input type='password' id='password' label='Password' name='password'>
+                        <Input type='password' id='password' label='Password' name='password' emptyForm={form}>
                         </Input>
                         <div className={st['button-container']}>
                             <Button btnStyle='card'><span>Go</span></Button>
@@ -89,12 +88,12 @@ const LoginPage = () => {
                         <div className={st.close} onClick={handleCloseClick}></div>
                     </Heading>
 
-                    <form ref={signupFormRef} onChange={handleChangeForm} onSubmit={handleSubmitForm} >
-                        <Input className={st.inputContainer} inputStyle='alt' type='email' id='signup-email' label='Email' name='email' ref={signupRef}>
+                    <form onChange={handleChangeForm} onSubmit={handleSubmitForm} >
+                        <Input className={st.inputContainer} inputStyle='alt' type='email' id='signup-email' label='Email' name='email' emptyForm={form} ref={signupRef}>
                         </Input>
-                        <Input className={st.inputContainer} inputStyle='alt' type='password' id='signup-password' label='Password' name='password'>
+                        <Input className={st.inputContainer} inputStyle='alt' type='password' id='signup-password' label='Password' name='password' emptyForm={form}>
                         </Input>
-                        <Input className={st.inputContainer} inputStyle='alt' type='password' id='signup-repeat-password' label='Repeat Password' name='repeatPassword'>
+                        <Input className={st.inputContainer} inputStyle='alt' type='password' id='signup-repeat-password' label='Repeat Password' name='repeatPassword' emptyForm={form}>
                             {errShown && <Text className={st.err}>Passwords do not match</Text>}
                         </Input>
                         <div className={st['button-container']}>
