@@ -13,6 +13,17 @@ const Main = ({ context }) => {
     const [characters, setCharacters] = useState(CHARACTERS);
     const { setLikedCards } = useContext(context)
 
+    useEffect(() => {
+        const cardsStorage = window.localStorage.getItem('cards') ?
+            JSON.parse(window.localStorage.getItem('cards')) :
+            characters;
+        setCharacters(cardsStorage);
+    }, [])
+
+    useEffect(() => {//sends cards to local storage on change
+        window.localStorage.setItem('cards', JSON.stringify(characters));
+    }, [characters])
+
     const handleLikeClick = (id) => {
         setCharacters(prevState => prevState.map((card) => {
             if (card.id === id) {
