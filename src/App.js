@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/Layout';
@@ -8,21 +8,8 @@ import Contacts from './pages/Contacts';
 import About from './pages/About';
 import Characters from './pages/Characters';
 import NotFound from './pages/NotFound';
-import LoginPage from './pages/LoginPage/LoginPage';
-
-const LikesContext = React.createContext(null);
-const LikesProvider = ({ children }) => {
-  const [likedCards, setLikedCards] = useState([]);
-
-  return (
-    <LikesContext.Provider value={{
-      likedCards,
-      setLikedCards: (cards) => setLikedCards(() => cards.filter((card) => card.isLike === true))
-    }}>
-      {children}
-    </LikesContext.Provider>
-  )
-}
+import LoginPage from './pages/LoginPage';
+import LikesProvider from './pages/LikesProvider';
 
 function App() {
   //index === path="/"
@@ -33,8 +20,8 @@ function App() {
     <LikesProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Main context={LikesContext} />} />
-          <Route path="characters" element={<Characters context={LikesContext} />} />
+          <Route index element={<Main />} />
+          <Route path="characters" element={<Characters />} />
           <Route path="characters/:id" element={<Biography />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="about" element={<About />} />

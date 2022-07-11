@@ -7,11 +7,13 @@ import Heading from '../../components/Heading';
 import CharacterCard from '../../components/CharacterCard';
 import CHARACTERS from '../../consts/CHARACTERS';
 
+import { LikesContext } from '../LikesProvider/LikesProvider';
+
 import st from './Main.module.scss'
 
-const Main = ({ context }) => {
+const Main = () => {
     const [characters, setCharacters] = useState(CHARACTERS);
-    const { setLikedCards } = useContext(context)
+    const { setLikedCards } = useContext(LikesContext)
 
     useEffect(() => {
         const cardsStorage = window.localStorage.getItem('cards') ?
@@ -20,9 +22,10 @@ const Main = ({ context }) => {
         setCharacters(cardsStorage);
     }, [])
 
-    useEffect(() => {//sends cards to local storage on change
+    useEffect(() => {
+        setLikedCards(characters);
         window.localStorage.setItem('cards', JSON.stringify(characters));
-    }, [characters])
+    }, [characters]);
 
     const handleLikeClick = (id) => {
         setCharacters(prevState => prevState.map((card) => {
@@ -32,10 +35,6 @@ const Main = ({ context }) => {
             return card;
         }));
     }
-
-    useEffect(() => {
-        setLikedCards(characters);
-    }, [characters]);
 
     return (
         <>
