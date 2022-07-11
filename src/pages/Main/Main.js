@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Container from '../../components/Container';
 import Slider from '../../components/Slider';
@@ -7,18 +7,33 @@ import Heading from '../../components/Heading';
 import CharacterCard from '../../components/CharacterCard';
 import CHARACTERS from '../../consts/CHARACTERS';
 
+import { LikesContext } from '../LikesProvider/LikesProvider';
+
 import st from './Main.module.scss'
 
 const Main = () => {
     const [characters, setCharacters] = useState(CHARACTERS);
-    const handleLikeClick = (id) => {
+    const { setLikedCards } = useContext(LikesContext)
 
+    useEffect(() => {
+        const cardsStorage = window.localStorage.getItem('cards') ?
+            JSON.parse(window.localStorage.getItem('cards')) :
+            characters;
+        setCharacters(cardsStorage);
+    }, [])
+
+    useEffect(() => {
+        setLikedCards(characters);
+        window.localStorage.setItem('cards', JSON.stringify(characters));
+    }, [characters]);
+
+    const handleLikeClick = (id) => {
         setCharacters(prevState => prevState.map((card) => {
             if (card.id === id) {
                 card.isLike = !card.isLike;
             }
             return card;
-        }))
+        }));
     }
 
     return (

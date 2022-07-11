@@ -1,15 +1,20 @@
+import { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import Container from '../../components/Container';
 import Heading from '../../components/Heading';
 import CharacterCard from '../../components/CharacterCard';
-import CHARACTERS from '../../consts/CHARACTERS';
+// import CHARACTERS from '../../consts/CHARACTERS';
+import { LikesContext } from '../LikesProvider/LikesProvider';
 
 import st from './Characters.module.scss'
 
 const Characters = () => {
-    const [characters, setCharacters] = useState(CHARACTERS);
+ 
+    const { likedCards, setLikedCards } = useContext(LikesContext);
+    const [characters, setCharacters] = useState(likedCards);
+    
+    console.log(likedCards)
 
     const handleLikeClick = (id) => {
 
@@ -21,6 +26,11 @@ const Characters = () => {
         }))
     }
 
+    useEffect(() => {
+        setLikedCards(characters);
+    }, [characters]);
+
+
     return (
         <section className={st.root}>
             <Container>
@@ -31,7 +41,7 @@ const Characters = () => {
                 </div>
                 <div className={st.cardWrapper}>
                     {
-                        characters.map((item) => {
+                        likedCards.map((item) => {
                             return (
                                 <CharacterCard
                                     key={item.id}
