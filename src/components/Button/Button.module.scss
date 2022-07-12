@@ -15,6 +15,15 @@
         cursor: pointer;
     }
 
+    &:disabled {
+        opacity: 0.5;
+        cursor: wait;
+
+        &:hover {
+            cursor: wait;
+        }
+    }
+
     &.inversed {
         color: black;
         border: 1px solid black;
@@ -64,7 +73,7 @@
             transition: 0.3s ease;
         }
 
-        &:hover {
+        &:hover:not(:disabled) {
             border-color: #ed2553;
 
             span {
@@ -72,8 +81,8 @@
             }
         }
 
-        &:active,
-        &:focus {
+        &:active:not(:disabled),
+        &:focus:not(:disabled) {
             border-color: #ed2553;
 
             &::before {
@@ -126,12 +135,12 @@
             transition: 0.3s ease;
         }
 
-        &:hover {
+        &:hover:not(:disabled) {
             background: rgba(255, 255, 255, 0.7);
         }
 
-        &:active,
-        &:focus {
+        &:active:not(:disabled),
+        &:focus:not(:disabled) {
             &::before {
                 opacity: 1;
                 transform: scale(10);

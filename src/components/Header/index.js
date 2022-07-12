@@ -5,6 +5,8 @@ import cn from 'classnames';
 import st from './Header.module.scss';
 import logo from '../../assets/logo.png';
 import Container from '../Container';
+import { useAuth } from '../../context/AuthContext/AuthContext';
+import Button from '../Button';
 
 const MENU = [
     { page: 'Home', url: '/' },
@@ -15,6 +17,8 @@ const MENU = [
 
 const Header = () => {
     const navigate = useNavigate();
+    const auth = useAuth();
+
     const [mutableClassName, setMutableClassName] = useState(null);
 
     useEffect(() => {
@@ -51,6 +55,16 @@ const Header = () => {
                                     >{item.page}</NavLink>
                                 </li>
                             )}
+                            {
+                                auth.user && (
+                                    <li>
+                                        <Button 
+                                        btnStyle={'inversed'}
+                                        handleBtnClick={() => auth.signOut()}
+                                        >Logout</Button>
+                                    </li>
+                                )
+                            }
                     </ul>
 
                 </Container>
