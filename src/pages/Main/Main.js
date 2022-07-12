@@ -6,8 +6,7 @@ import Slider from '../../components/Slider';
 import Heading from '../../components/Heading';
 import CharacterCard from '../../components/CharacterCard';
 import CHARACTERS from '../../consts/CHARACTERS';
-
-import { LikesContext } from '../LikesProvider/LikesProvider';
+import { LikesContext } from '../../context/LikesContext/LikesContext';
 
 import st from './Main.module.scss'
 

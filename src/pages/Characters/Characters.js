@@ -4,17 +4,13 @@ import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import Heading from '../../components/Heading';
 import CharacterCard from '../../components/CharacterCard';
-// import CHARACTERS from '../../consts/CHARACTERS';
-import { LikesContext } from '../LikesProvider/LikesProvider';
+import { LikesContext } from '../../context/LikesContext/LikesContext';
 
 import st from './Characters.module.scss'
 
 const Characters = () => {
- 
     const { likedCards, setLikedCards } = useContext(LikesContext);
     const [characters, setCharacters] = useState(likedCards);
-    
-    console.log(likedCards)
 
     const handleLikeClick = (id) => {
 

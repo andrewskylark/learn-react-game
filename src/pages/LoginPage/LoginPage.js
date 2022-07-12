@@ -1,22 +1,41 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
 import logo from './assets/logo.png';
 import { ReactComponent as ToggleIcon } from './assets/icon-pen.svg';
 import Heading from '../../components/Heading';
+import Text from '../../components/Text/Text';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button';
+import { useAuth } from '../../context/AuthContext/AuthContext';
 
 import st from './LoginPage.module.scss';
-import Text from '../../components/Text/Text';
 
 const LoginPage = () => {
+    const [loading, setLoading] = useState(false);
     const [active, setActive] = useState(false);
     const [errShown, setErrShown] = useState(false);
     const [form, setForm] = useState({});
 
     const signinRef = useRef(null);
     const signupRef = useRef(null);
+    const auth = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const fromPath = useMemo(() => {
+        if (location.state?.from) {
+            return location.state?.from;
+        }
+        return '/';
+    }, [location.state])
+
+    useEffect(() => {
+        if (auth.user !== null) {
+            navigate(fromPath);
+        }
+    }, []);
 
     useEffect(() => {
         //focus form input on Load
@@ -51,13 +70,21 @@ const LoginPage = () => {
         if (form.repeatPassword && form.repeatPassword !== form.password) {
             setErrShown(true);
         } else {
+            setLoading(true);
             console.log(form);
             evt.target.reset();//resets current form
             setForm({})
             setErrShown(false);
+
+            setTimeout((form) => {
+                auth.signIn(form, () => {
+                    setLoading(false);
+                    navigate(fromPath);
+                });
+            }, 1500, form);
         }
     }
-    
+
     return (
         <section className={st.root}>
             <div className={st['header-logo']}>
@@ -74,7 +101,9 @@ const LoginPage = () => {
                         <Input type='password' id='password' label='Password' name='password' emptyForm={form}>
                         </Input>
                         <div className={st['button-container']}>
-                            <Button btnStyle='card'><span>Go</span></Button>
+                            <Button btnStyle='card' disabled={loading}>
+                                <span>Go</span>
+                            </Button>
                         </div>
                     </form>
                 </div>
@@ -83,7 +112,7 @@ const LoginPage = () => {
                     <div className={cn(st.toggle, { [st.active]: active })} onClick={handleToggleClick}>
                         <ToggleIcon />
                     </div>
-                    <Heading className={st.title}>
+                    <Heading className={st.title}>x
                         Register
                         <div className={st.close} onClick={handleCloseClick}></div>
                     </Heading>
@@ -97,7 +126,9 @@ const LoginPage = () => {
                             {errShown && <Text className={st.err}>Passwords do not match</Text>}
                         </Input>
                         <div className={st['button-container']}>
-                            <Button btnStyle='card-alt'><span>Register</span></Button>
+                            <Button btnStyle='card-alt' disabled={loading}>
+                                <span>Register</span>
+                            </Button>
                         </div>
                     </form>
                 </div>

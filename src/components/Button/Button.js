@@ -4,10 +4,11 @@ import cn from 'classnames';
 
 import st from './Button.module.scss'
 
-const Button = ({ children, btnStyle, className, handleBtnClick }) => {
+const Button = ({ children, btnStyle, disabled, className, handleBtnClick }) => {
 
     return (
         <button
+        disabled={disabled}
             className={
                 cn(
                     st.root,
@@ -23,11 +24,13 @@ const Button = ({ children, btnStyle, className, handleBtnClick }) => {
 
 Button.defaultProps = {
     btnStyle: null,
+    disabled: false
 }
 
 Button.propTypes = {
     children: PropTypes.node,
     btnStyle: PropTypes.string,
+    disabled: PropTypes.bool,
     className: PropTypes.string,
     onBtnClick: PropTypes.func,
 }

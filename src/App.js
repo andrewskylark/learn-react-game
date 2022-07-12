@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Layout from './components/Layout';
@@ -9,7 +9,8 @@ import About from './pages/About';
 import Characters from './pages/Characters';
 import NotFound from './pages/NotFound';
 import LoginPage from './pages/LoginPage';
-import LikesProvider from './pages/LikesProvider';
+import LikesProvider from './context/LikesContext/LikesContext';
+import { RequireAuth } from './context/AuthContext/AuthContext';
 
 function App() {
   //index === path="/"
@@ -20,9 +21,9 @@ function App() {
     <LikesProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Main />} />
-          <Route path="characters" element={<Characters />} />
-          <Route path="characters/:id" element={<Biography />} />
+          <Route index element={<RequireAuth> <Main /> </RequireAuth>} />
+          <Route path="characters" element={<RequireAuth> <Characters /> </RequireAuth>} />
+          <Route path="characters/:id" element={<RequireAuth> <Biography /> </RequireAuth>} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<NotFound />} />
