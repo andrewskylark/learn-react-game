@@ -1,38 +1,48 @@
 import PropTypes from 'prop-types';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Container from '../../components/Container';
 import Slider from '../../components/Slider';
 import Heading from '../../components/Heading';
 import CharacterCard from '../../components/CharacterCard';
-import CHARACTERS from '../../consts/CHARACTERS';
-import { LikesContext } from '../../context/LikesContext/LikesContext';
 
 import st from './Main.module.scss'
+import { cardsDataSelector, cardsErrorSelector, cardsIdCardSelector, cardsIsLoadingSelector, fetchCharactersAsync, like } from '../../store/cardsSlice';
+import Text from '../../components/Text';
+// import useFetch from '../../hooks/useFetch';
 
 const Main = () => {
-    const [characters, setCharacters] = useState(CHARACTERS);
-    const { setLikedCards } = useContext(LikesContext)
+    // const [data, isLoading, error] = useFetch('http://localhost:4000/characters'); //self made hook gets data from server json
+    const data = useSelector(cardsDataSelector);
+    const isLoading = useSelector(cardsIsLoadingSelector);
+    const error = useSelector(cardsErrorSelector)
+    const cardsIdSelector = useSelector(cardsIdCardSelector);
 
+    const dispatch = useDispatch();
     useEffect(() => {
-        const cardsStorage = window.localStorage.getItem('cards') ?
-            JSON.parse(window.localStorage.getItem('cards')) :
-            characters;
-        setCharacters(cardsStorage);
-    }, [])
+        dispatch(fetchCharactersAsync());
+    }, []);
+    // useEffect(() => {
+    //     const cardsStorage = window.localStorage.getItem('cards') ?
+    //         JSON.parse(window.localStorage.getItem('cards')) :
+    //         characters;
+    //     setCharacters(cardsStorage);
+    // }, [])
 
-    useEffect(() => {
-        setLikedCards(characters);
-        window.localStorage.setItem('cards', JSON.stringify(characters));
-    }, [characters]);
+    // useEffect(() => {
+    //     setLikedCards(characters);
+    //     window.localStorage.setItem('cards', JSON.stringify(characters));
+    // }, [characters]);
 
     const handleLikeClick = (id) => {
-        setCharacters(prevState => prevState.map((card) => {
-            if (card.id === id) {
-                card.isLike = !card.isLike;
-            }
-            return card;
-        }));
+        dispatch(like(id));
+        // setCharacters(prevState => prevState.map((card) => {
+        //     if (card.id === id) {
+        //         card.isLike = !card.isLike;
+        //     }
+        //     return card;
+        // }));
     }
 
     return (
@@ -50,7 +60,13 @@ const Main = () => {
                     </div>
                     <div className={st.cardWrapper}>
                         {
-                            characters.map((item) => {
+                            isLoading && <Heading>Loading...</Heading>
+                        }
+                        {
+                            error && <Text>{error}</Text>
+                        }
+                        {
+                            data !== null && data.map((item) => {
                                 return (
                                     <CharacterCard
                                         key={item.id}
@@ -59,7 +75,7 @@ const Main = () => {
                                         humanName={item.humanName}
                                         thumb={item.thumbnail.path}
                                         descr={item.description}
-                                        isLike={item.isLike}
+                                        isLike={cardsIdSelector[item.id]}
                                         onLikeClick={handleLikeClick}
                                     />
                                 )
