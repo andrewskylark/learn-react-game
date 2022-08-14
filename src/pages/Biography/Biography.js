@@ -7,13 +7,15 @@ import Heading from '../../components/Heading';
 import Text from '../../components/Text';
 import Button from '../../components/Button';
 import { BIO } from '../../consts/BIO';
+import useFetch from '../../hooks/useFetch';
 
 import st from './Biography.module.scss'
 
 const Biography = () => {
     const { id } = useParams();
+    const [data, isLoading, error] = useFetch(`http://localhost:4000/bio/${id}`); //self made hook gets data from server json
+
     const navigate = useNavigate();
-    let character = BIO[id];
 
     if (!BIO[id]) {
         //если карта не найдена рендерит пустой компонент и вызывает navigate под капотом
@@ -23,9 +25,9 @@ const Biography = () => {
     const handleBackClick = () => {
         navigate(-1); //go to prev page
     }
-    
+
     return (
-        
+
         <section className={cn(st.root)}>
             <Container>
                 <Button
@@ -35,17 +37,23 @@ const Biography = () => {
                 >Go Back
                 </Button>
                 {
-                    character.map((item, i) => {
+                    isLoading && <Heading>Loading...</Heading>
+                }
+                {
+                    error && <Text>{error}</Text>
+                }
+                {
+                    data !== null && data.text.map((item, i) => {
                         let node;
-                        
+
                         switch (item.type) {
                             case 'h1':
                             case 'h2':
 
                                 node =
-                                    <Heading 
-                                    lvl={parseInt(item.type.replace(/[^0-9.]/g, ''), 10)}
-                                    anchorLink={`#${item.text.replace(/\s/g, '_')}`}
+                                    <Heading
+                                        lvl={parseInt(item.type.replace(/[^0-9.]/g, ''), 10)}
+                                        anchorLink={`#${item.text.replace(/\s/g, '_')}`}
                                     >
                                         {item.text}
                                     </Heading>
